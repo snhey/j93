@@ -26,7 +26,7 @@ jobs:
           node-version: 10.x
       - name: npm install
         run: |
-          cd ~/jd_scripts
+          cd ~/scripts
           npm install
       - name: '运行 【京豆变动通知】'
         run: |
