@@ -28,7 +28,7 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【宠汪汪】'
+      - name: '运行 【京东工厂】'
         run: |
           cd ~/scripts
           node jd_jdfactory.js
