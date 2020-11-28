@@ -12,6 +12,7 @@ let shareCodes = [
   '',//账号二的好友shareCode，不同好友中间用@符号隔开
 ]
 // 判断github action里面是否有东东萌宠互助码
+conosole.log(process.env.DDFACTORY_SHARECODES)
 if (process.env.DDFACTORY_SHARECODES) {
   if (process.env.DDFACTORY_SHARECODES.indexOf('&') > -1) {
     console.log(`您的互助码选择的是用&隔开\n`)
