@@ -31,6 +31,7 @@ jobs:
       - name: '运行 【京东工厂】'
         run: |
           cd ~/scripts
+          ls -l
           node jd_jdfactory.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
