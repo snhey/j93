@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone -b  master https://github.com/lxk0301/jd_scripts.git ~/scripts
+          git clone -b  master https://github.com/269569205/jd_scripts.git ~/scripts
           cd ~/scripts
           ls -l
       - name: Use Node.js 10.x
