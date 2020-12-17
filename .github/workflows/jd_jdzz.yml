@@ -28,10 +28,10 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【京喜故事】'
+      - name: '运行 【京东赚赚】'
         run: |
           cd ~/scripts
-          node jd_jxstory.js
+          node jd_jdzz.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
