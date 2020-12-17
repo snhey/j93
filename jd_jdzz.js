@@ -254,6 +254,7 @@ function getUserInfo() {
             data = JSON.parse(data);
             if (data.data.shareTaskRes)
               console.log(`您的${$.name}好友助力码为${data.data.shareTaskRes.itemId}`)
+            console.log(data.data.shareTaskRes)
           }
         }
       } catch (e) {
