@@ -368,7 +368,17 @@ function readShareCode() {
 function shareCodesFormat() {
   return new Promise(async resolve => {
     // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
-    $.newShareCodes = [];
+    $.newShareCodes = [
+    `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+  `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+   `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+    `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+	 `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+	  `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+	   `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+	    `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+
+    ];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
     } else {
