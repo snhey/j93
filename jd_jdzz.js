@@ -383,6 +383,17 @@ function shareCodesFormat() {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
     } else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
+	 inviteCodes =[
+		    `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+		  `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+		   `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+		    `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+			 `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+			  `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+			   `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+			    `ACj***WnqmSyTMOD2iXnQ@AUWE5m6zDyjAKXmj43XVJlQ@ACTNfmquZzzUN@AUWE5m6zDyjAKXmj43XVJlQ@ACj***fnqiSxDwICWWXnQ@AUWE5wNbtnldiViWKtSo3@AUWE5mfjBmTdcCGj4iX0ZlA`,
+
+		    ];
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
