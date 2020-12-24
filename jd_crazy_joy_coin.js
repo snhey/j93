@@ -42,6 +42,7 @@ if ($.isNode()) {
   cookiesArr.reverse();
   cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
   cookiesArr.reverse();
+  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
 }
 !function (n) {
   "use strict";
@@ -447,9 +448,11 @@ function openBox(eventType = 'LUCKY_BOX_DROP', boxId) {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data['success']) {
-              $.log(`点击幸运盒子成功，剩余观看视频次数：${data.data.advertViewTimes}，等待30秒`)
-              await $.wait(30000)
-              await rewardBox(eventType, boxId)
+              $.log(`点击幸运盒子成功，剩余观看视频次数：${data.data.advertViewTimes}, ${data.data.advertViewTimes > 0 ? '等待30秒' : '跳出'}`)
+              if (data.data.advertViewTimes > 0) {
+                await $.wait(30000)
+                await rewardBox(eventType, boxId);
+              }
             }
           }
         }

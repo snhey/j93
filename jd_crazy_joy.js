@@ -33,7 +33,7 @@ let helpSelf = true // 循环助力
 let applyJdBean = 0
 let cookiesArr = [], cookie = '', message = '';
 const inviteCodes = [
-  '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
+   '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
  '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
@@ -42,6 +42,7 @@ const inviteCodes = [
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
+
 ];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 if ($.isNode()) {
@@ -57,6 +58,7 @@ if ($.isNode()) {
   cookiesArr.reverse();
   cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
   cookiesArr.reverse();
+  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
 }
 !function (n) {
   "use strict";
@@ -201,11 +203,14 @@ if ($.isNode()) {
         }
         continue
       }
+      await shareCodesFormat()
       await jdCrazyJoy()
     }
   }
+
   if (helpSelf) {
     console.log(`开始循环助力`)
+    // 助力
     for (let i = 0; i < cookiesArr.length; i++) {
       if (cookiesArr[i]) {
         cookie = cookiesArr[i];
@@ -229,6 +234,29 @@ if ($.isNode()) {
         await helpFriends()
       }
     }
+    // 领取任务奖励
+    for (let i = 0; i < cookiesArr.length; i++) {
+      if (cookiesArr[i]) {
+        cookie = cookiesArr[i];
+        $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
+        $.index = i + 1;
+        $.isLogin = true;
+        $.nickName = '';
+        await TotalBean();
+        console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
+        if (!$.isLogin) {
+          $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
+
+          if ($.isNode()) {
+            await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+          } else {
+            $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
+          }
+          continue
+        }
+        await doTasks()
+      }
+    }
   }
 })()
   .catch((e) => {
@@ -243,17 +271,9 @@ async function jdCrazyJoy() {
   $.bean = 0
   await getUserInfo($.nextCode)
   await doSign()
-  // await helpFriends()
-  await getTaskInfo()
-  for (let j = 0; j < $.taskList.length; ++j) {
-    let task = $.taskList[j]
-    if (task.status === 0)
-      for (let i = task.doneTimes; i < task.ext.count; ++i) {
-        await doTask(task.taskId)
-      }
-    if (task.status === 2)
-      await awardTask(task.taskId)
-  }
+  // 帮助作者
+  await helpFriends()
+  await doTasks()
   await getCoin()
   await getUserBean()
   console.log(`当前信息：${$.bean} 京豆，${$.coin} 金币`)
@@ -261,6 +281,18 @@ async function jdCrazyJoy() {
     await $.wait(1000)
     console.log(`检测您打开了自动兑换开关，去兑换京豆`)
     await doApplyJdBean(applyJdBean)
+  }
+}
+async function doTasks() {
+  await getTaskInfo()
+  for (let j = 0; j < $.taskList.length; ++j) {
+    let task = $.taskList[j]
+    if (task.status === 0 && task.taskTypeId === 103)
+      for (let i = task.doneTimes; i < task.ext.count; ++i) {
+        await doTask(task.taskId)
+      }
+    if (task.status === 2)
+      await awardTask(task.taskId)
   }
 }
 function doApplyJdBean(bean = 1000) {
@@ -301,7 +333,7 @@ function getUserInfo(code = "EdLPh8A6X5G1iWXu-uPYfA==") {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data.success && data.data && data.data.userInviteCode) {
-              console.log(`您的助力码为: ${data.data.userInviteCode}`)
+              console.log(`\n【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】${data.data.userInviteCode}`)
               $.selfCodes.push(data.data.userInviteCode)
               $.nextCode = data.data.userInviteCode
             }
@@ -340,7 +372,7 @@ function getTaskInfo() {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if (data.success && data.data && data.data.length) {
-              $.taskList = data.data.filter(vo => vo.taskTypeId === 103)
+              $.taskList = data.data
             } else {
               console.log(`任务信息获取失败`)
             }
