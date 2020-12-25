@@ -8,17 +8,8 @@
 // 同一个京东账号的好友互助码用@符号隔开,不同京东账号之间用&符号或者换行隔开,下面给一个示例
 // 如: 京东账号1的shareCode1@京东账号1的shareCode2&京东账号2的shareCode1@京东账号2的shareCode2
 let SuperMarketShareCodes = [
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',//账号一的好友shareCode,不同好友中间用@符号隔开
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',//账号二的好友shareCode，不同好友中间用@符号隔开
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
-  'IhM3beiwYvog9ma6iw@eU9YaO3hYfkkp2bVy3oQ1g@IR0-aeq7ZPwj@IR0-aeq7ZPwj@eU9YM5fPNZ5MryunoyVu@eU9YarnjMv5y8WbVn3JA1w',
+  '-4msulYas0O2JsRhE-2TA5XZmBQ@eU9Yar_mb_9z92_WmXNG0w@eU9YaejjYv4g8T2EwnsVhQ',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'aURoM7PtY_Q@eU9Ya-y2N_5z9DvXwyIV0A@eU9YaOnjYK4j-GvWmXIWhA',//账号二的好友shareCode，不同好友中间用@符号隔开
 ]
 // 判断github action里面是否有京小超商圈互助码
 if (process.env.SUPERMARKET_SHARECODES) {

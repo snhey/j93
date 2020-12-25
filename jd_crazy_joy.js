@@ -29,11 +29,11 @@ const JD_API_HOST = 'https://api.m.jd.com/';
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
-let helpSelf = true // 循环助力
+let helpSelf = false // 循环助力，默认关闭
 let applyJdBean = 0
 let cookiesArr = [], cookie = '', message = '';
 const inviteCodes = [
-   '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
+  '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
  '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
@@ -42,8 +42,8 @@ const inviteCodes = [
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
    '4z0kxs***yvfljo4kDS7ebcg==@904gIBQsCl27Dkz6YEcK9Q==@gsUV7I8Wo9p5UQnD9MkvGQ==@LnzZf8egOoHBgDgG5u5zRat9zd5YaBeE@9F3UWp7TGc-e49MwIK6zNg==@ERVeCOPrqffEg85PYvPPe6t9zd5YaBeE',
-
 ];
+const randomCount = 5;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -198,8 +198,6 @@ if ($.isNode()) {
 
         if ($.isNode()) {
           await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        } else {
-          $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
         }
         continue
       }
@@ -225,8 +223,6 @@ if ($.isNode()) {
 
           if ($.isNode()) {
             await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-          } else {
-            $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
           }
           continue
         }
@@ -249,8 +245,6 @@ if ($.isNode()) {
 
           if ($.isNode()) {
             await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-          } else {
-            $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
           }
           continue
         }
@@ -589,7 +583,30 @@ function taskUrl(functionId, body = '') {
     }
   }
 }
-
+function readShareCode() {
+  console.log(`开始`)
+  return new Promise(async resolve => {
+    $.get({url: `https://code.chiang.fun/api/v1/jd/jdcrazyjoy/read/${randomCount}/`}, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            console.log(`随机取${randomCount}个码放到您固定的互助码后面`)
+            data = JSON.parse(data);
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+    await $.wait(10000);
+    resolve()
+  })
+}
 //格式化助力码
 function shareCodesFormat() {
   return new Promise(async resolve => {
@@ -602,7 +619,7 @@ function shareCodesFormat() {
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
-    const readShareCodeRes = null //await readShareCode();
+    const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
     }
@@ -619,16 +636,9 @@ function requireConfig() {
     if ($.isNode()) {
       if (process.env.JDJOY_SHARECODES) {
         if (process.env.JDJOY_SHARECODES.indexOf('\n') > -1) {
-          console.log(`您的互助码选择的是用\n隔开\n`)
           shareCodes = process.env.JDJOY_SHARECODES.split('\n');
-        } else if (process.env.JDJOY_SHARECODES.indexOf('&') > -1) {
-          console.log(`您的互助码选择的是用&隔开\n`)
-          shareCodes = process.env.JDJOY_SHARECODES.split('&');
-        } else if (process.env.JDJOY_SHARECODES.indexOf('@') > -1) {
-          console.log(`您的互助码选择的是用@隔开\n`)
-          shareCodes = process.env.JDJOY_SHARECODES.split('@');
         } else {
-          shareCodes = process.env.JDJOY_SHARECODES.split();
+          shareCodes = process.env.JDJOY_SHARECODES.split('&');
         }
       }
       if (process.env.JDJOY_HELPSELF) {
