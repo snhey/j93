@@ -317,7 +317,7 @@ function increase() {
               $.click = false
             }else{
               console.log(`点击厂长过快，休息25秒`)
-              await $.wait(25000);
+              await $.wait(29000);
             }
           }
         }
