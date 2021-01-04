@@ -46,7 +46,7 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-`Sv_VzQRob8VLRJxKb***A@S5KkcRB9K8lHVdhL0lP4JdA@SvPt6RRgQ9***TS@Sv_V6QRsb_F3XIR-b***A@S5KkcH2Vkpja9fl-G_KF3@S5KkcRktIoVaDIBL0wPZZdQ@S5KkcRB4a9lGDJEzxlvUIdg@S5KkcRkpK8FWEJk_3wfcOIg@S5KkcRxwd9wXQJE_yxvAMIA@S5KkcRU8do1HUcU-mx6UIIA`,
+  `Sv_VzQRob8VLRJxKb***A@S5KkcRB9K8lHVdhL0lP4JdA@SvPt6RRgQ9***TS@Sv_V6QRsb_F3XIR-b***A@S5KkcH2Vkpja9fl-G_KF3@S5KkcRktIoVaDIBL0wPZZdQ@S5KkcRB4a9lGDJEzxlvUIdg@S5KkcRkpK8FWEJk_3wfcOIg@S5KkcRxwd9wXQJE_yxvAMIA@S5KkcRU8do1HUcU-mx6UIIA`,
 `Sv_VzQRob8VLRJxKb***A@S5KkcRB9K8lHVdhL0lP4JdA@SvPt6RRgQ9***TS@Sv_V6QRsb_F3XIR-b***A@S5KkcH2Vkpja9fl-G_KF3@S5KkcRktIoVaDIBL0wPZZdQ@S5KkcRB4a9lGDJEzxlvUIdg@S5KkcRkpK8FWEJk_3wfcOIg@S5KkcRxwd9wXQJE_yxvAMIA@S5KkcRU8do1HUcU-mx6UIIA`,
 `Sv_VzQRob8VLRJxKb***A@S5KkcRB9K8lHVdhL0lP4JdA@SvPt6RRgQ9***TS@Sv_V6QRsb_F3XIR-b***A@S5KkcH2Vkpja9fl-G_KF3@S5KkcRktIoVaDIBL0wPZZdQ`,
 `Sv_VzQRob8VLRJxKb***A@S5KkcRB9K8lHVdhL0lP4JdA@SvPt6RRgQ9***TS@Sv_V6QRsb_F3XIR-b***A@S5KkcH2Vkpja9fl-G_KF3@S5KkcRktIoVaDIBL0wPZZdQ`,
@@ -350,7 +350,7 @@ function readShareCode() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面`)
+            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
