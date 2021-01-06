@@ -216,7 +216,7 @@ async function jdJxStory() {
       break
     }
     if ($.joyIds[i] === 0) {
-      await buyJoy($.buyJoyLevel)
+     // await buyJoy($.buyJoyLevel)
       await $.wait(1000)
     }
   }
