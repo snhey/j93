@@ -9,8 +9,17 @@
 // 同一个京东账号的好友助力码用@符号隔开,不同京东账号之间用&符号或者换行隔开,下面给一个示例
 // 如: 京东账号1的shareCode1@京东账号1的shareCode2&京东账号2的shareCode1@京东账号2的shareCode2
 let JxncShareCodes = [
-  '',//账号一的好友shareCode,不同好友中间用@符号隔开
-  '',//账号二的好友shareCode，不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+   'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+  'd95f730ac9567d60c824***ea757e0e72b@b***c0422d55690f2d825ab3034***92fceb@bc7***4cdd***aaff2b322f36***d0ae6ba08@2a9b0***d4a73bf4946e28ae902decc330@2c08e609***8b2ee25d8720ad4d9e65635@c232a86aa55b5c56***7fa59bd7f***d***bc8',//账号一的好友shareCode,不同好友中间用@符号隔开
+
 ]
 // 判断github action里面是否有京喜农场助力码
 if (process.env.JXNC_SHARECODES) {
