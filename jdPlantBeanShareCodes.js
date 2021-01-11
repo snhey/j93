@@ -16,7 +16,7 @@ let PlantBeanShareCodes = [
 		    'qj27hlitp6mgcyqbob6wwx7tj43h7wlwy7o5jii@olmijoxgmjutz6qcgpctgxwqfc5ba5fly5jlhba@afjmnwak3un3yht2nki7sshoe4@e7lhibzb3zek3d6p3d5ogub42tx2rqi723ifufy@4npkonnsy7xi3p6pjfxg6ct5gll42gmvnz7zgoy@nkvdrkoit5o65u6cqxfqokj5jowdql73wx7b6ua@ds3ya4fnmkg56gqcbgnblg7poe3h7wlwy7o5jii@olmijoxgmjuty6zl265upe4brnjwnhhqifiu4na@4npkonnsy7xi3acmk7zsxub73hzw24f3t7zmssy',
 			  'qj27hlitp6mgcyqbob6wwx7tj43h7wlwy7o5jii@olmijoxgmjutz6qcgpctgxwqfc5ba5fly5jlhba@afjmnwak3un3yht2nki7sshoe4@e7lhibzb3zek3d6p3d5ogub42tx2rqi723ifufy@4npkonnsy7xi3p6pjfxg6ct5gll42gmvnz7zgoy@nkvdrkoit5o65u6cqxfqokj5jowdql73wx7b6ua@ds3ya4fnmkg56gqcbgnblg7poe3h7wlwy7o5jii@olmijoxgmjuty6zl265upe4brnjwnhhqifiu4na@4npkonnsy7xi3acmk7zsxub73hzw24f3t7zmssy',
 ]
-// 判断github action里面是否有东东萌宠互助码
+// 判断github action里面是否有种豆得豆互助码
 if (process.env.PLANT_BEAN_SHARECODES) {
   if (process.env.PLANT_BEAN_SHARECODES.indexOf('&') > -1) {
     console.log(`您的种豆互助码选择的是用&隔开\n`)
