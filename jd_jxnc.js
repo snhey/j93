@@ -44,7 +44,7 @@ let currentCookie = ''; // 当前用户 cookie
 let tokenNull = {'farm_jstoken': '', 'phoneid': '', 'timestamp': ''}; // 内置一份空的 token
 let tokenArr = []; // 用户 token 数组
 let currentToken = {}; // 当前用户 token
-const shareCode = '22bd6fbbabbaa770a45ab2607e7a1e8a@197c6094e965fdf3d33621b47719e0b1'; // 内置助力码
+const shareCode = '2c08e609***8b2ee25d8720ad4d9e65635@bc7***4cdd***aaff2b322f36***d0ae6ba08@b***c0422d55690f2d825ab3034***92fceb@d95f730ac9567d60c824***ea757e0e72b@2a9b0***d4a73bf4946e28ae902decc330@c232a86aa55b5c56***7fa59bd7f***d***bc8'; // 内置助力码
 let jxncShareCodeArr = []; // 用户 助力码 数组
 let currentShareCode = []; // 当前用户 要助力的助力码
 const openUrl = `openjd://virtual?params=${encodeURIComponent('{ "category": "jump", "des": "m", "url": "https://wqsh.jd.com/sns/201912/12/jxnc/detail.html?ptag=7155.9.32&smp=b47f4790d7b2a024e75279f55f6249b9&active=jdnc_1_chelizi1205_2"}',)}`; // 打开京喜农场
@@ -90,6 +90,7 @@ let assistUserShareCode = 0; // 随机助力用户 share code
             subTitle = '';
             message = '';
             option = {};
+            $.answer = 0;
             $.helpNum = 0;
             $.helpSelfNum = 0;
             await tokenFormat(); // 处理当前账号 token
@@ -310,6 +311,11 @@ function browserTask() {
                     break;
                 }
             }
+            if (status[0] === 1017) { // ret:1017 retmsg:"score full" 水滴已满，果实成熟，跳过所有任务
+                $.log('水滴已满，果实成熟，跳过所有任务');
+                resolve(true);
+                break;
+            }
             if (status[0] === 1032) {
                 $.log('任务执行失败，种植的 APP 专属种子，请提供 token 或种植非 APP 种子');
                 message += '任务执行失败，种植的 APP 专属种子，请提供 token 或种植非 APP 种子\n';
@@ -350,6 +356,10 @@ function answerTask() {
                     if (ret === 0 && right === 1) {
                         $.drip += eachtimeget;
                     }
+                    if (ret === 1017) { // ret:1017 retmsg:"score full" 水滴已满，果实成熟，跳过答题
+                        resolve();
+                        return;
+                    }
                     if (((ret !== 0 && ret !== 1029) || retmsg === 'ans err') && $.answer < 4) {
                         $.answer++;
                         await $.wait(1000);
@@ -367,7 +377,7 @@ function answerTask() {
 
 function getMessage(endInfo, startInfo) {
     const need = endInfo.target - endInfo.score;
-    const get = endInfo.modifyscore; // 本地变更获得水滴
+    const get = endInfo.modifyscore; // 本次变更获得水滴
     const leaveGet = startInfo.modifyscore; // 离开时获得水滴
     let dayGet = 0; // 今日共获取水滴数
     if ($.detail) {
@@ -379,8 +389,13 @@ function getMessage(endInfo, startInfo) {
         });
     }
     message += `【水滴】本次获得${get} 离线获得${leaveGet} 今日获得${dayGet} 还需水滴${need}\n`;
+    if (need <= 0) {
+        notifyBool = true;
+        message += `【成熟】水果已成熟请及时收取\n`;
+        return;
+    }
     if (get > 0 || leaveGet > 0 || dayGet > 0) {
-        const day = parseInt(need / (dayGet > 0 ? dayGet : (get + leaveGet)));
+        const day = Math.ceil(need / (dayGet > 0 ? dayGet : (get + leaveGet)));
         message += `【预测】还需 ${day} 天\n`;
     }
     if (get > 0 || leaveGet > 0) { // 本次 或 离线 有水滴
@@ -397,44 +412,55 @@ function submitInviteId(userName) {
             resolve();
             return;
         }
-        $.post(
-            {
-                url: `https://api.ninesix.cc/api/jx-nc/${$.info.smp}/${encodeURIComponent(userName)}?active=${$.info.active}`,
-            },
-            (err, resp, _data) => {
-                try {
-                    const {code, data = {}} = JSON.parse(_data);
-                    $.log(`邀请码提交：${code}`);
-                    if (data.value) {
-                        message += '【邀请码】提交成功！\n';
+        try {
+            $.post(
+                {
+                    url: `https://api.ninesix.cc/api/jx-nc/${$.info.smp}/${encodeURIComponent(userName)}?active=${$.info.active}`,
+                    timeout: 3000
+                },
+                (err, resp, _data) => {
+                    try {
+                        const {code, data = {}} = JSON.parse(_data);
+                        $.log(`邀请码提交：${code}`);
+                        if (data.value) {
+                            message += '【邀请码】提交成功！\n';
+                        }
+                    } catch (e) {
+                        $.logErr(e, resp);
+                    } finally {
+                        resolve();
                     }
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve();
-                }
-            },
-        );
+                },
+            );
+        } catch (e) {
+            $.logErr(e, resp);
+            resolve();
+        }
     });
 }
 
 function getAssistUser() {
     return new Promise(resolve => {
-        $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`}, async (err, resp, _data) => {
-            try {
-                const {code, data = {}} = JSON.parse(_data);
-                if (data.value) {
-                    $.log(`获取随机助力码成功 ${code} ${data.value}`);
-                    resolve(data.value);
-                } else {
-                    $.log(`获取随机助力码失败 ${code}`);
+        try {
+            $.get({url: `https://api.ninesix.cc/api/jx-nc?active=${$.info.active}`, timeout: 3000}, async (err, resp, _data) => {
+                try {
+                    const {code, data = {}} = JSON.parse(_data);
+                    if (data.value) {
+                        $.log(`获取随机助力码成功 ${code} ${data.value}`);
+                        resolve(data.value);
+                    } else {
+                        $.log(`获取随机助力码失败 ${code}`);
+                    }
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve(false);
                 }
-            } catch (e) {
-                $.logErr(e, resp);
-            } finally {
-                resolve(false);
-            }
-        });
+            });
+        } catch (e) {
+            $.logErr(e, resp);
+            resolve(false);
+        }
     });
 }
 
@@ -537,6 +563,7 @@ function taskUrl(function_path, body) {
             Host: `wq.jd.com`,
             'Accept-Language': `zh-cn`,
         },
+        timeout: 3000,
     };
 }
 
