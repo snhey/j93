@@ -45,7 +45,7 @@ if ($.isNode()) {
   cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = [
+const inviteCodes =  [
   `cgxZLWeLIbzT6A7MREnKqWEIRipFaWzHhHcT@cgxZLmmCJb7Y7gjPDw3Gr1mfRu8oOV5rYrD72ytdQO2a_X6-QA@cgxZdTXte8GnuWyjVkDbh_DaZE5qtkiR0rlZuvx4uDhdz0q3wcIVeyM@cgxZLmmLJb_Y4wfJCQDGr95BC1dxmosyVAuew38Wvpv0kjmDVg@cgxZdTXtILuJ7QvLXg2p7xJXU9SpZMMoUN44dTEHeKsflE8IMpH7RjycLKs@cgxZdTXtIu-LvgydCA2puzH4a75d2gkTlI7_oHvtp8HafLIgdfiDrG6z3ZQ@cgxZdTXtIrneuQudAVb7571w3DgLs6rNnYCDtePjOxs0MWbBCza7Nier8DA@cgxZKmKGJ7ja4w3JFQGv5iyEdmazjxTe3kGYoWRdq09ntRwTdLrsuzNhKVuYCT2d@cgxZdTXtIL_f6FvMWgKsvJw6-WnRW2_SUQt2QyHoTDUuYX7qr0Evex2fRow@cgxZdTXtIOiJuAubXQf963crdfS-_7CZNUmNM0_yAmldR5DIQomEu0jBdgc`,
    `cgxZLWeLIbzT6A7MREnKqWEIRipFaWzHhHcT@cgxZLmmCJb7Y7gjPDw3Gr1mfRu8oOV5rYrD72ytdQO2a_X6-QA@cgxZdTXte8GnuWyjVkDbh_DaZE5qtkiR0rlZuvx4uDhdz0q3wcIVeyM@cgxZLmmLJb_Y4wfJCQDGr95BC1dxmosyVAuew38Wvpv0kjmDVg@cgxZdTXtILuJ7QvLXg2p7xJXU9SpZMMoUN44dTEHeKsflE8IMpH7RjycLKs@cgxZdTXtIu-LvgydCA2puzH4a75d2gkTlI7_oHvtp8HafLIgdfiDrG6z3ZQ@cgxZdTXtIrneuQudAVb7571w3DgLs6rNnYCDtePjOxs0MWbBCza7Nier8DA@cgxZKmKGJ7ja4w3JFQGv5iyEdmazjxTe3kGYoWRdq09ntRwTdLrsuzNhKVuYCT2d@cgxZdTXtIL_f6FvMWgKsvJw6-WnRW2_SUQt2QyHoTDUuYX7qr0Evex2fRow@cgxZdTXtIOiJuAubXQf963crdfS-_7CZNUmNM0_yAmldR5DIQomEu0jBdgc`,
     `cgxZLWeLIbzT6A7MREnKqWEIRipFaWzHhHcT@cgxZLmmCJb7Y7gjPDw3Gr1mfRu8oOV5rYrD72ytdQO2a_X6-QA@cgxZdTXte8GnuWyjVkDbh_DaZE5qtkiR0rlZuvx4uDhdz0q3wcIVeyM@cgxZLmmLJb_Y4wfJCQDGr95BC1dxmosyVAuew38Wvpv0kjmDVg@cgxZdTXtILuJ7QvLXg2p7xJXU9SpZMMoUN44dTEHeKsflE8IMpH7RjycLKs@cgxZdTXtIu-LvgydCA2puzH4a75d2gkTlI7_oHvtp8HafLIgdfiDrG6z3ZQ`,
@@ -884,7 +884,7 @@ function taskPostUrl(function_id, body = {}, function_id2) {
       "origin": "https://h5.m.jd.com",
       "referer": "https://h5.m.jd.com/",
       'Content-Type': 'application/x-www-form-urlencoded',
-      "User-Agent":  "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0",
+      "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
     }
   }
 }
