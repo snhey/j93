@@ -795,21 +795,21 @@
       "name": "Webhook",
       "keys": [
         "ACTIONS_TRIGGER_TOKEN",
-        "githubUser",
+        "GITHUB113333User",
         "repo",
         "TRIGGER_KEYWORDS"
       ],
       "settings": [
         {
           "id": "ACTIONS_TRIGGER_TOKEN",
-          "name": "github token",
+          "name": "GITHUB113333 token",
           "val": "",
           "type": "text",
           "desc": "申请教程:https://www.jianshu.com/p/bb82b3ad1d11 记得勾选repo权限就行"
         },
         {
-          "id": "githubUser",
-          "name": "github 用户名",
+          "id": "GITHUB113333User",
+          "name": "GITHUB113333 用户名",
           "val": "",
           "type": "text",
           "desc": "例如：LXK9301"
