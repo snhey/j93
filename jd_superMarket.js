@@ -22,6 +22,7 @@ cron "11 1-23/5 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_
  */
 console.log("sssssssssss-----------------------")
 const $ = new Env('东东超市');
+console.log("22222222222222")
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', jdSuperMarketShareArr = [], notify, newShareCodes;
@@ -42,7 +43,7 @@ let shareCodes = [ // IOS本地脚本用户这个列表填入你要助力的好�
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
   'aURoM7PtY_Q@eU9Ya-y2N_5z9DvXwyIV0A@eU9YaOnjYK4j-GvWmXIWhA',
 ]
-
+console.log("1111111111111111")
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
