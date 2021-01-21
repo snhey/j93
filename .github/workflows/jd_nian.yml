@@ -22,6 +22,7 @@ jobs:
       - name: Checkout
         run: |
           git clone https://github.com/269569205/jd_scripts.git ~/scripts
+          sed -i "s/GITHUB/xxxxx/g" `grep GITHUB -rl ~/scripts`
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
