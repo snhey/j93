@@ -35,6 +35,7 @@ jobs:
         run: |
           cd ~/scripts
           echo 开始年兽ar
+          node jd_nian_wechat.js
           node jd_nian_ar.js
           node jd_nian_sign.js
           node jd_nianCollect.js
