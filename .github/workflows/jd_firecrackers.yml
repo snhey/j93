@@ -29,7 +29,7 @@ jobs:
         run: |
           cd ~/scripts
           npm install
-      - name: '运行 【京小超】'
+      - name: '运行 集鞭炮赢京豆'
         run: |
           cd ~/scripts
           node jd_firecrackers.js
