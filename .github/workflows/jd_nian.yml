@@ -34,7 +34,7 @@ jobs:
         run: |
           cd ~/scripts
           node jd_nian.js
-	  node jd_nian_sign.js
+          node jd_nian_sign.js
           node jd_nianCollect.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
