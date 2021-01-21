@@ -34,11 +34,11 @@ jobs:
       - name: '运行 炸年兽'
         run: |
           cd ~/scripts
-          node jd_nian.js
           echo 开始年兽ar
           node jd_nian_ar.js
           node jd_nian_sign.js
           node jd_nianCollect.js
+          node jd_nian.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
